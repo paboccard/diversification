@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Carotte",
+        "minYear": 4,
+        "type": "Vegetable",
+        "image": "carrot.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Poireau",
+        "minYear": 6,
+        "type": "Vegetable",
+        "image": "leek.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Pomme",
+        "minYear": 4,
+        "type": "Fruit",
+        "image": "apple.jpg"
+    }
+]

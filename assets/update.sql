@@ -1,0 +1,1 @@
+INSERT INTO Food(id,name ,minYear, type, introduced, feedback, image) VALUES( 4, "Poire" , 7, "Fruit", 0, 3, "apple.jpg");
