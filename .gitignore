@@ -9,6 +9,11 @@
 .history
 .svn/
 
+# Android and IOS generated code
+/ios/
+.vscode
+/android/
+
 # IntelliJ related
 *.iml
 *.ipr
