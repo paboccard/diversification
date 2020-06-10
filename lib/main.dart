@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:diversification/database/blocs/bloc_provider.dart';
 import 'package:diversification/database/blocs/food_bloc.dart';
+import 'package:diversification/database/blocs/introduced_food_bloc.dart';
 import 'package:diversification/model/food.dart';
 import 'package:diversification/redux/app_state.dart';
 import 'package:diversification/screens/introduced/introduced_list.dart';
@@ -29,15 +30,26 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int _currentIndex = 0;
   FoodsList _foods;
-  List<Widget> _children;
+  //List<Widget> _children;
+
+  List<Widget> _children = <Widget>[
+    BlocProvider(
+      bloc: FoodsBloc(),
+      child: Search(),
+    ),
+    BlocProvider(
+      bloc: IntroducedFoodsBloc(),
+      child: IntroducedList(),
+    )
+  ];
 
   @override
   void initState() {
     super.initState();
-    _children = [
+    /*_children = [
       Search(),
       IntroducedList(),
-    ];
+    ];*/
   }
   //List data;
 
@@ -49,9 +61,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreProvider<AppState>(
-      store: widget.store,
-      child: MaterialApp(
+      return MaterialApp(
         home: Scaffold(
           appBar: new AppBar(
             title: new Text(
@@ -59,7 +69,7 @@ class _MyAppState extends State<MyApp> {
               style: new TextStyle(color: Colors.white),
             ),
           ),
-          bottomNavigationBar: BottomNavigationBar(
+          /*bottomNavigationBar: BottomNavigationBar(
             onTap: onTabTapped, // new
             currentIndex: _currentIndex, // new
             items: [
@@ -74,13 +84,10 @@ class _MyAppState extends State<MyApp> {
               new BottomNavigationBarItem(
                   icon: Icon(Icons.person), title: Text('Profile'))
             ],
-          ),
-          body: BlocProvider(
-            bloc: FoodsBloc(),
-            child: _children[_currentIndex],
-          ),
+          ),*/
+          body: //_children[_currentIndex],
         ),
-      )
+      );
       /*child: MaterialApp(
         home: Scaffold(
           appBar: new AppBar(
@@ -124,6 +131,5 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),*/
-    );
   }
 }

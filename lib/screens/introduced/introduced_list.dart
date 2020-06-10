@@ -16,27 +16,27 @@ class IntroducedList extends StatefulWidget {
 
 class _IntroducedListState extends State<IntroducedList> {
 
-  FoodsBloc _introducedFoodsBloc;
+  IntroducedFoodsBloc _introducedFoodsBloc;
 
   @override
   void initState(){
     super.initState();
-    _introducedFoodsBloc = BlocProvider.of<FoodsBloc>(context);
+    _introducedFoodsBloc = BlocProvider.of<IntroducedFoodsBloc>(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      initialData: _introducedFoodsBloc.allItem,
+    return StreamBuilder<List<Food>>(
+      //initialData: _introducedFoodsBloc.foodsStream,
       stream: _introducedFoodsBloc.foodsStream,
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return new Center(child: CircularProgressIndicator());
+          return new Center(child: Text("No Data"));
         } else {
           //FoodsList foods = snapshot.data;
           return new FoodList(
               //foods: foods.foods,
-              foods: snapshot.data['introducedFood']);
+              foods: snapshot.data);
         }
       },
     );

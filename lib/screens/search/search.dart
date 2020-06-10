@@ -63,8 +63,8 @@ class _SearchState extends State<Search> {
     return new Container(
       child: Center(
           //child: FutureBuilder<FoodsList>(
-          child: StreamBuilder(
-            initialData: _foodsBloc.allItem,
+          child: StreamBuilder<List<Food>>(
+        //initialData: _foodsBloc.foodsStream,
         stream: _foodsBloc.foodsStream,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -73,7 +73,7 @@ class _SearchState extends State<Search> {
             //FoodsList foods = snapshot.data;
             return new FoodList(
                 //foods: foods.foods,
-                foods: snapshot.data['allFoods']);
+                foods: snapshot.data);
           }
         },
       )
