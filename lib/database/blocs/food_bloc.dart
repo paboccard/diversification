@@ -1,16 +1,13 @@
 import 'dart:async';
 
+import 'package:diversification/database/blocs/bloc.dart';
 import 'package:diversification/database/model/food.dart';
 import 'package:diversification/database/blocs/bloc_provider.dart';
 import 'package:diversification/database/database_helper.dart';
 
-class FoodsBloc implements BlocBase{
+class FoodsBloc implements Bloc{
 
   List<Food> foods;
-
-  final _foodsStreamController = StreamController<List<Food>>.broadcast();
-  // for updates
-  final _foodsUpdateController = StreamController<Food>();
 
   // Create a broadcast controller that allows this stream to be listened
   // to multiple times. This is the primary, if not only, type of stream you'll be using.
@@ -28,7 +25,7 @@ class FoodsBloc implements BlocBase{
 
   FoodsBloc(){
     getFoods();
-    _updateFoodController.stream.listen(_handleUpdateFood);
+    //_updateFoodController.stream.listen(_handleUpdateFood);
   }
 
   @override
@@ -42,9 +39,8 @@ class FoodsBloc implements BlocBase{
     _inFoods.add(foods);
   }
 
-  void _handleUpdateFood(Food food) async {
+  void handleUpdateFood(Food food) async {
     await DatabaseHelper.db.update(food);
-    //inUpdateFood.add(food);
     getFoods();
   }
 

@@ -1,11 +1,11 @@
 import 'dart:async';
 
+import 'package:diversification/database/blocs/bloc.dart';
 import 'package:diversification/database/blocs/food_bloc.dart';
 import 'package:diversification/database/model/food.dart';
-import 'package:diversification/database/blocs/bloc_provider.dart';
 import 'package:diversification/database/database_helper.dart';
 
-class IntroducedFoodsBloc extends FoodsBloc implements BlocBase{
+class IntroducedFoodsBloc extends FoodsBloc implements Bloc{
 
   // Create a broadcast controller that allows this stream to be listened
   // to multiple times. This is the primary, if not only, type of stream you'll be using.

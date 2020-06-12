@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:diversification/database/blocs/bloc.dart';
 import 'package:diversification/database/model/food.dart';
-import 'package:diversification/database/blocs/bloc_provider.dart';
 import 'package:diversification/database/database_helper.dart';
 
-class ViewFoodBloc implements BlocBase {
+class ViewFoodBloc implements Bloc {
   final _saveFoodController = StreamController<Food>.broadcast();
   StreamSink get inSaveFood => _saveFoodController.sink;
 

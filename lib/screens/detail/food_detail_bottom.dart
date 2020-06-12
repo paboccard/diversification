@@ -27,7 +27,7 @@ class _FoodDetailBottomState extends State<FoodDetailBottom> {
   @override
   void initState() {
     super.initState();
-    //introduced = widget.food.introduced;
+    introduced = widget.food.introduced;
     //_viewFoodBloc = BlocProvider.of<ViewFoodBloc>(context);
     _foodsBloc = BlocProvider.of<FoodsBloc>(context);
   }
@@ -109,8 +109,7 @@ class _FoodDetailBottomState extends State<FoodDetailBottom> {
   }*/
 
   void _updateFood() async {
-    _foodsBloc.inUpdateFood.add(widget.food);
-    //_viewFoodBloc.inSaveFood.add(widget.food);
+    _foodsBloc.handleUpdateFood(widget.food);
   }
 
   @override
@@ -127,11 +126,14 @@ class _FoodDetailBottomState extends State<FoodDetailBottom> {
                     'Aliment introduit',
                     style: TextStyle(fontSize: 18.0),
                   ),
-                  value: widget.food.introduced,
+                  value: introduced,
                   contentPadding: EdgeInsets.only(left: 40, right: 40.0),
                   onChanged: (bool value) {
-                    widget.food.introduced = !widget.food.introduced;
+                    widget.food.introduced = !introduced;
                     this._updateFood();
+                    setState(() {
+                      introduced = !introduced;
+                    });
                   });
             } else {
               return new Center(child: CircularProgressIndicator());

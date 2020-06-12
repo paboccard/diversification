@@ -85,7 +85,7 @@ class _MyAppState extends State<MyApp> {
                   icon: Icon(Icons.person), title: Text('Profile'))
             ],
           ),*/
-          body: //_children[_currentIndex],
+          body: _children[_currentIndex],
         ),
       );
       /*child: MaterialApp(
