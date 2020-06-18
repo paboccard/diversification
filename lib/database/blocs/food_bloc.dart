@@ -7,7 +7,7 @@ import 'package:diversification/database/database_helper.dart';
 
 class FoodsBloc implements Bloc{
 
-  List<Food> foods;
+  List<Food> _foods;
 
   // Create a broadcast controller that allows this stream to be listened
   // to multiple times. This is the primary, if not only, type of stream you'll be using.
@@ -18,6 +18,8 @@ class FoodsBloc implements Bloc{
 
   // Output stream. This one will be used within our pages to display the foods.
   Stream<List<Food>> get foodsStream => _foodsController.stream;
+
+  List<Food> get foods => _foods;
 
   // Input stream for update food. We'll call this from our pages.
   final _updateFoodController = StreamController<Food>.broadcast();
@@ -35,8 +37,8 @@ class FoodsBloc implements Bloc{
   }
 
   void getFoods() async {
-    List<Food> foods = await DatabaseHelper.db.getAllFoods();
-    _inFoods.add(foods);
+    _foods = await DatabaseHelper.db.getAllFoods();
+    _inFoods.add(_foods);
   }
 
   void handleUpdateFood(Food food) async {
