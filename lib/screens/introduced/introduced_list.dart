@@ -8,27 +8,22 @@ import 'package:diversification/screens/search/food_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
-class IntroducedList extends StatefulWidget {
-
-  @override
-  _IntroducedListState createState() => _IntroducedListState();
-}
-
-class _IntroducedListState extends State<IntroducedList> {
-
-  IntroducedFoodsBloc _introducedFoodsBloc = IntroducedFoodsBloc();
-
-  @override
-  void initState(){
-    super.initState();
-    //_introducedFoodsBloc = BlocProvider.of<IntroducedFoodsBloc>(context);
-  }
-
+class IntroducedList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Aliments Introduits'),
+      ),
+      body: _buildIntroducedListFood(context),
+    );
+  }
+
+  Widget _buildIntroducedListFood(BuildContext context) {
+    final bloc = BlocProvider.of<FoodsBloc>(context);
     return StreamBuilder<List<Food>>(
-      //initialData: _introducedFoodsBloc.foodsStream,
-      stream: _introducedFoodsBloc.introducedFoodsStream,
+      stream: bloc.introducedFoodsStream,
+      initialData: bloc.introducedFoods,
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return new Center(child: CircularProgressIndicator());
@@ -40,11 +35,5 @@ class _IntroducedListState extends State<IntroducedList> {
         }
       },
     );
-    /*return StoreConnector<AppState, AppState>(
-      converter: (store) => store.state,
-      builder:  (context, state){
-        return FoodList(foods: state.foods,);
-      },
-    );*/
   }
 }

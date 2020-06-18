@@ -69,6 +69,6 @@ class Food {
 
   @override
   String toString() {
-    return "${this.id} - ${this.name} - ${this.minYear} - ${this.type} - ${this.image} - ${this.introduced ? "true" : "false"} - ${this.feedback}";
+    return "${this.id} - ${this.name} - ${this.minYear} - ${this.type} - ${this.image} - ${this.introduced} - ${this.feedback}";
   }
 }

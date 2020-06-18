@@ -18,7 +18,8 @@ class Search extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.favorite_border),
-            onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => IntroducedList())),
+            onPressed: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => IntroducedList())),
           )
         ],
       ),
@@ -26,18 +27,18 @@ class Search extends StatelessWidget {
     );
   }
 
-  Widget _builderListFood(BuildContext context){
+  Widget _builderListFood(BuildContext context) {
     return StreamBuilder<List<Food>>(
       stream: BlocProvider.of<FoodsBloc>(context).foodsStream,
-      builder: (context, snapshot){
-         if (!snapshot.hasData) {
-            return new Center(child: CircularProgressIndicator());
-          } else {
-            //FoodsList foods = snapshot.data;
-            return new FoodList(
-                //foods: foods.foods,
-                foods: snapshot.data);
-          }
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return new Center(child: CircularProgressIndicator());
+        } else {
+          //FoodsList foods = snapshot.data;
+          return new FoodList(
+              //foods: foods.foods,
+              foods: snapshot.data);
+        }
       },
     );
   }
