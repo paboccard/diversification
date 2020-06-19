@@ -29,7 +29,7 @@ class DatabaseHelper {
     String path = join(documentsDirectory.path, "main.db");
     print("initDB");
     return await openDatabase(path,
-        version: 1,
+        version: 2,
         onOpen: (db) {},
         onCreate: _onCreate,
         onUpgrade: _onUpgrade,
